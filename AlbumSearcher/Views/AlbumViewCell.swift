@@ -37,4 +37,9 @@ class AlbumViewCell: UICollectionViewCell {
         ])
     }
     
+    func setAlbumData(for album: Album) {
+        albumNameLabel.text = album.collectionName
+        authorNameLabel.text = album.artistName
+    }
+    
 }

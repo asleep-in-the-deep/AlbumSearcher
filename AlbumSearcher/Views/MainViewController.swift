@@ -69,9 +69,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let albumItem = albums[indexPath.row]
         
-        cell.albumNameLabel.text = albumItem.collectionName
-        cell.authorNameLabel.text = albumItem.artistName
-        
+        cell.setAlbumData(for: albumItem)
         cell.setAlbumCover(for: albumItem.artworkUrl100)
         
         return cell
@@ -118,6 +116,7 @@ extension MainViewController: UISearchBarDelegate {
                     }
                     self.removeLoadingView()
                     self.collectionView.reloadData()
+                    self.view.endEditing(true)
                 }
             }
         } else {
@@ -132,6 +131,10 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         view.endEditing(true)
     }
 }
